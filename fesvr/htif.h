@@ -47,21 +47,24 @@ class htif_t : public chunked_memif_t
   // range to memory, because it has already been loaded through a sideband
   virtual bool is_address_preloaded(addr_t taddr, size_t len) { return false; }
 
+  //hack
+  reg_t entry;
+  addr_t sig_addr; // torture
+  addr_t sig_len; // torture
+  addr_t tohost_addr;
+  addr_t fromhost_addr;
+  const std::vector<std::string>& target_args() { return targs; }
+
  private:
   void parse_arguments(int argc, char ** argv);
   void register_devices();
   void usage(const char * program_name);
 
   memif_t mem;
-  reg_t entry;
   bool writezeros;
   std::vector<std::string> hargs;
   std::vector<std::string> targs;
   std::string sig_file;
-  addr_t sig_addr; // torture
-  addr_t sig_len; // torture
-  addr_t tohost_addr;
-  addr_t fromhost_addr;
   int exitcode;
   bool stopped;
 
@@ -70,7 +73,6 @@ class htif_t : public chunked_memif_t
   bcd_t bcd;
   std::vector<device_t*> dynamic_devices;
 
-  const std::vector<std::string>& target_args() { return targs; }
 
   friend class memif_t;
   friend class syscall_t;

@@ -20,6 +20,8 @@ fesvr_install_hdrs = $(fesvr_hdrs)
 
 fesvr_install_lib = yes
 
+fesvr_install_shared_lib = yes
+
 fesvr_srcs = \
   elfloader.cc \
   htif.cc \
